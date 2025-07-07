@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Binario360 - Mobile Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./binario360-mobile.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="top-bar">
+    <button id="btnPerfil" class="btn-perfil" title="Perfil">
+      <img src="user-icon.svg" alt="Perfil" />
+    </button>
+    <span class="platform-title">Binario360</span>
+    <div class="saldo-box">
+      <span id="saldo">R$1000,00</span>
+      <button id="recarregar" title="Recarregar saldo">⟳</button>
+      <button id="mudarConta" class="btn-real">Conta Real</button>
+    </div>
+  </header>
+
+  <main class="main-content-central">
+    <div class="espaco-extra"></div>
+
+    <!-- GRÁFICO -->
+    <section class="grafico-section">
+      <canvas id="grafico"></canvas>
+    </section>
+
+    <!-- PAINEL DE OPERAÇÃO -->
+    <section class="painel-section">
+      <form class="painel-trade" autocomplete="off" onsubmit="return false">
+        <div class="painel-trade-header">
+          <div>
+            <span class="painel-label">Valor</span>
+            <input type="number" id="valorEntrada" min="5" step="1" value="5" class="painel-input" />
+          </div>
+          <!-- PAR DE MOEDA NO PAINEL, COM DROPDOWN FLUTUANTE -->
+          <div class="par-container">
+            <button type="button" class="par-dropdown-toggle" id="dropdownPar" aria-haspopup="listbox" aria-expanded="false">
+              EUR/USD <svg width="16" height="16"><path fill="#FFC600" d="M3 6l5 5 5-5z"/></svg>
+            </button>
+            <ul class="par-dropdown-list" id="dropdown-list"></ul>
+          </div>
+        </div>
+        <div class="painel-trade-row painel-trade-payout">
+          <span><b>Payout:</b> <span id="payout" class="painel-payout-value">90%</span></span>
+          <span><b>Lucro:</b> <span id="lucro" class="painel-lucro-value">R$0,00</span></span>
+        </div>
+        <div class="painel-trade-row painel-trade-vela">
+          <span id="tempoVelaPainel" class="painel-vela">Vela atual: 00:05</span>
+        </div>
+        <div class="painel-trade-row painel-trade-botoes">
+          <button type="button" class="btn-operacao acima" id="btnAcima">↑ Acima</button>
+          <button type="button" class="btn-operacao abaixo" id="btnAbaixo">↓ Abaixo</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Botão histórico -->
+    <button id="btnHistorico" class="btn-historico-mobile">
+      <span class="icone-historico">📋</span> Histórico
+    </button>
+
+    <div id="dataHoraFooter" class="datahora-footer"></div>
+  </main>
+
+  <!-- MODAL PERFIL -->
+  <div id="modalPerfil" class="modal-perfil-bg" style="display:none;">
+    <div class="modal-perfil-box">
+      <div class="perfil-header">
+        <span class="perfil-title">Meu Perfil</span>
+        <button id="fecharPerfil" class="modal-perfil-close">✕</button>
+      </div>
+      <div class="perfil-userbox">
+        <div class="perfil-foto-box">
+          <img id="perfilFoto" src="user-default.png" alt="Foto de perfil" class="perfil-foto" />
+          <label for="perfilUpload" class="perfil-foto-upload" title="Adicionar/Alterar foto">
+            <input type="file" id="perfilUpload" accept="image/*" style="display:none;">
+            <span>📷</span>
+          </label>
+        </div>
+        <div class="perfil-infobox">
+          <span class="perfil-email" id="perfilEmail">email@cliente.com</span>
+          <span class="perfil-id" id="perfilId">ID: 000001</span>
+          <span class="perfil-pais">
+            <img id="perfilBandeira" src="https://flagcdn.com/w20/br.png" alt="BR" class="perfil-bandeira">
+            <span id="perfilPais">Brasil</span>
+          </span>
+        </div>
+      </div>
+      <div class="perfil-botoes">
+        <button class="perfil-btn" id="perfilDeposito"><span>💳</span> Depósito</button>
+        <button class="perfil-btn" id="perfilRetirada"><span>💸</span> Retirada</button>
+        <button class="perfil-btn" id="perfilSuporteModal"><span>🛟</span> Suporte</button>
+        <button class="perfil-btn" id="perfilConfiguracoes"><span>⚙️</span> Configurações</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL HISTÓRICO -->
+  <div id="modalHistorico" class="modal-historico-bg" style="display:none;">
+    <div class="modal-historico-box">
+      <div class="modal-historico-header">
+        <span class="modal-historico-title">Histórico de Operações</span>
+        <button id="fecharHistorico" class="modal-historico-close">✕</button>
+      </div>
+      <div id="historicoOperacoes" class="modal-historico-list"></div>
+    </div>
+  </div>
+
+  <div id="notificacoes" class="notificacoes-mobile"></div>
+  <script src="./binario360-mobile.js"></script>
+</body>
+</html>
