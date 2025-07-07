@@ -1,12 +1,16 @@
-html, body {
-  height: 100vh;
-  width: 100vw;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   background: #181c23;
   color: #f7f7f7;
   font-family: 'Inter', Arial, sans-serif;
-  overflow: hidden;
 }
 body { min-height: 100vh; }
 
@@ -14,6 +18,8 @@ body { min-height: 100vh; }
   position: fixed;
   top: 0; left: 0; right: 0;
   width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
   height: 62px;
   background: #121317;
   color: #FFC600;
@@ -23,6 +29,7 @@ body { min-height: 100vh; }
   padding: 0 12px 0 8px;
   z-index: 50;
   box-shadow: 0 2px 8px #0003;
+  box-sizing: border-box;
 }
 .btn-perfil {
   border: none;
@@ -89,10 +96,9 @@ body { min-height: 100vh; }
 }
 
 .main-content-central {
-  height: 100vh;
   min-height: 100vh;
-  width: 100vw;
-  padding-top: 62px;
+  width: 100vw !important;
+  max-width: 100vw !important;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -101,10 +107,10 @@ body { min-height: 100vh; }
   position: relative;
   overflow-x: hidden;
 }
-
 .grafico-section {
-  width: 100vw;
-  max-width: 450px;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
   aspect-ratio: 1/1;
   margin: 0 auto 0 auto;
   display: flex;
@@ -112,10 +118,12 @@ body { min-height: 100vh; }
   justify-content: center;
   background: transparent;
   flex-shrink: 0;
+  overflow-x: hidden;
 }
 #grafico {
-  width: 99%;
-  height: 99%;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
   display: block;
   background: #181c23;
   border-radius: 16px;
@@ -123,13 +131,13 @@ body { min-height: 100vh; }
   min-height: 220px;
 }
 
-/* === PAINEL DE TRADER NOVO === */
 .painel-section {
-  width: 100vw;
-  max-width: 450px;
-  margin: 0 auto 0 auto;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
   position: relative;
   z-index: 10;
+  overflow-x: hidden;
 }
 
 .painel-trade.novo-painel {
@@ -143,6 +151,7 @@ body { min-height: 100vh; }
   gap: 14px;
   width: 100%;
   max-width: 100vw;
+  box-sizing: border-box;
 }
 
 .painel-toolbar-novo {
@@ -176,6 +185,7 @@ body { min-height: 100vh; }
   z-index: 11;
   position: relative;
   transition: border .18s, background .18s;
+  box-sizing: border-box;
 }
 .par-dropdown-toggle:active, .par-dropdown-toggle:focus {
   border: 2px solid #27ae60;
@@ -228,6 +238,7 @@ body { min-height: 100vh; }
   box-shadow: 0 1.5px 8px #0001;
   cursor: pointer;
   transition: background .18s, color .18s;
+  box-sizing: border-box;
 }
 .btn-historico-toolbar:active, .btn-historico-toolbar:focus {
   background: #ffe475;
@@ -262,6 +273,7 @@ body { min-height: 100vh; }
   margin-bottom: 0;
   margin-top: 1px;
   transition: border .14s, background .14s, color .14s;
+  box-sizing: border-box;
 }
 .painel-input-novo:focus {
   border-color: #ffc600;
@@ -279,6 +291,7 @@ body { min-height: 100vh; }
   justify-content: space-between;
   margin-bottom: 2px;
   display: flex;
+  box-sizing: border-box;
 }
 .painel-payout-value { color: #ffc600; font-weight: 700; }
 .painel-lucro-value { color: #27ae60; font-weight: 700; }
@@ -307,6 +320,7 @@ body { min-height: 100vh; }
   width: 100%;
   margin-top: 3px;
   margin-bottom: 0;
+  box-sizing: border-box;
 }
 .btn-operacao {
   flex: 1;
@@ -323,6 +337,7 @@ body { min-height: 100vh; }
   margin: 0 1px;
   letter-spacing: 1px;
   outline: none;
+  box-sizing: border-box;
 }
 .btn-operacao.abaixo {
   background: linear-gradient(90deg,#e74c3c 60%,#ff7d6b 100%);
@@ -338,11 +353,17 @@ body { min-height: 100vh; }
   box-shadow: 0 2px 16px #e74c3c65;
 }
 
-@media (max-width: 500px) {
-  .grafico-section, .painel-section {
-    max-width: 99vw;
-    width: 99vw;
-    border-radius: 0 0 13px 13px;
+input, button {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .grafico-section, .painel-section, .main-content-central, .top-bar {
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    width: 100vw !important;
+    box-sizing: border-box;
   }
   .painel-trade.novo-painel {
     padding: 9px 2vw 10px 2vw;
@@ -378,7 +399,6 @@ body { min-height: 100vh; }
   flex-shrink: 0;
 }
 
-/* MODAIS E NOTIFICAÇÕES (funcionais) */
 .modal-perfil-bg,
 .modal-historico-bg {
   position: fixed;
@@ -487,7 +507,6 @@ body { min-height: 100vh; }
 .historico-resultado.erro { color: #e74c3c; font-weight: bold; }
 .historico-dt { color: #b6b6b6; font-size: 0.97em; margin-top: 1px; }
 
-/* NOTIFICAÇÕES */
 .notificacoes-mobile {
   position: fixed;
   top: 62px;
