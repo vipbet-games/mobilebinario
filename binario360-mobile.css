@@ -11,8 +11,12 @@ html, body {
   background: #181c23;
   color: #f7f7f7;
   font-family: 'Inter', Arial, sans-serif;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
 }
-body { min-height: 100vh; }
+body { min-height: 100vh; overflow-y: auto; }
 
 .top-bar {
   position: fixed;
@@ -106,6 +110,7 @@ body { min-height: 100vh; }
   background: #181c23;
   position: relative;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 .grafico-section {
   width: 100vw !important;
