@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Binario360 - Mobile Premium</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./binario360-mobile.css" />
+  <link rel="stylesheet" href="binario360-mobile.css" />
 </head>
 <body>
   <!-- HEADER -->
@@ -23,7 +23,6 @@
 
   <main class="main-content-central">
     <div class="espaco-extra"></div>
-
     <!-- GRÁFICO -->
     <section class="grafico-section">
       <canvas id="grafico"></canvas>
@@ -31,38 +30,36 @@
 
     <!-- PAINEL DE OPERAÇÃO -->
     <section class="painel-section">
-      <form class="painel-trade" autocomplete="off" onsubmit="return false">
-        <div class="painel-trade-header">
-          <div>
-            <span class="painel-label">Valor</span>
-            <input type="number" id="valorEntrada" min="5" step="1" value="5" class="painel-input" />
-          </div>
-          <!-- PAR DE MOEDA NO PAINEL, COM DROPDOWN FLUTUANTE -->
+      <form class="painel-trade novo-painel" autocomplete="off" onsubmit="return false">
+        <div class="painel-toolbar-novo">
           <div class="par-container">
             <button type="button" class="par-dropdown-toggle" id="dropdownPar" aria-haspopup="listbox" aria-expanded="false">
-              EUR/USD <svg width="16" height="16"><path fill="#FFC600" d="M3 6l5 5 5-5z"/></svg>
+              <span id="parSelecionado">AUD/USD</span>
+              <svg width="16" height="16"><path fill="#FFC600" d="M3 6l5 5 5-5z"/></svg>
             </button>
             <ul class="par-dropdown-list" id="dropdown-list"></ul>
           </div>
+          <button id="btnHistorico" class="btn-historico-toolbar" type="button" title="Histórico">
+            <span class="icone-historico">📋</span>
+          </button>
         </div>
-        <div class="painel-trade-row painel-trade-payout">
+        <div class="painel-valor-area-novo">
+          <span class="painel-label">Valor</span>
+          <input type="number" id="valorEntrada" min="5" step="1" value="5" class="painel-input-novo" />
+        </div>
+        <div class="painel-trade-row painel-trade-payout-novo">
           <span><b>Payout:</b> <span id="payout" class="painel-payout-value">90%</span></span>
           <span><b>Lucro:</b> <span id="lucro" class="painel-lucro-value">R$0,00</span></span>
         </div>
-        <div class="painel-trade-row painel-trade-vela">
+        <div class="painel-centralizado-novo">
           <span id="tempoVelaPainel" class="painel-vela">Vela atual: 00:05</span>
         </div>
-        <div class="painel-trade-row painel-trade-botoes">
+        <div class="painel-trade-row painel-trade-botoes-novo">
           <button type="button" class="btn-operacao acima" id="btnAcima">↑ Acima</button>
           <button type="button" class="btn-operacao abaixo" id="btnAbaixo">↓ Abaixo</button>
         </div>
       </form>
     </section>
-
-    <!-- Botão histórico -->
-    <button id="btnHistorico" class="btn-historico-mobile">
-      <span class="icone-historico">📋</span> Histórico
-    </button>
 
     <div id="dataHoraFooter" class="datahora-footer"></div>
   </main>
@@ -112,6 +109,6 @@
   </div>
 
   <div id="notificacoes" class="notificacoes-mobile"></div>
-  <script src="./binario360-mobile.js"></script>
+  <script src="binario360-mobile.js"></script>
 </body>
 </html>
