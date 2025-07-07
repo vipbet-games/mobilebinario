@@ -11,6 +11,7 @@ const tempoVelaPainel = document.getElementById('tempoVelaPainel');
 const notificacoes = document.getElementById("notificacoes");
 const canvas = document.getElementById("grafico");
 const btnHistorico = document.getElementById("btnHistorico");
+const parSelecionado = document.getElementById("parSelecionado");
 
 // ======= PAR DE MOEDA (Dropdown) =======
 const dropdownParBtn = document.getElementById("dropdownPar");
@@ -25,7 +26,7 @@ const pares = [
   { nome: "AUD/USD", vol: 1.3, vel: 5100 },
   { nome: "USD/BRL", vol: 2.8, vel: 3900 }
 ];
-let parAtualIndex = 0;
+let parAtualIndex = 5; // AUD/USD como default
 
 function atualizarDropdownPar() {
   dropdownList.innerHTML = "";
@@ -73,7 +74,7 @@ function clickForaDropdown(evt) {
 
 function trocarPar(novoParIndex) {
   parAtualIndex = novoParIndex;
-  dropdownParBtn.childNodes[0].nodeValue = pares[parAtualIndex].nome + " ";
+  parSelecionado.textContent = pares[parAtualIndex].nome;
   // Gera novo cenário de velas
   velas = [];
   linhasOperacao = [];
@@ -91,7 +92,7 @@ function trocarPar(novoParIndex) {
   intervaloVelas = setInterval(() => gerarNovaVela(), pares[parAtualIndex].vel);
   desenharVelas();
 }
-dropdownParBtn.childNodes[0].nodeValue = pares[parAtualIndex].nome + " ";
+parSelecionado.textContent = pares[parAtualIndex].nome;
 
 // ======= PERFIL =======
 const modalPerfil = document.getElementById('modalPerfil');
@@ -359,7 +360,7 @@ function atualizarSaldo() {
 function calcularLucro() {
   const valor = parseFloat(valorInput.value);
   if (isNaN(valor) || valor < 5) {
-    lucroEl.textContent = "Lucro: mínimo R$5";
+    lucroEl.textContent = "R$0,00";
   } else {
     lucroEl.textContent = `R$${(valor * payout / 100).toFixed(2)}`;
   }
@@ -496,7 +497,7 @@ document.getElementById("perfilConfiguracoes").onclick = () => criarNotificacao(
 payoutEl.textContent = `${payout}%`;
 for (let i = 0; i < numVelasVisiveis; i++) gerarNovaVela();
 atualizarDropdownPar();
-dropdownParBtn.childNodes[0].nodeValue = pares[parAtualIndex].nome + " ";
+parSelecionado.textContent = pares[parAtualIndex].nome;
 if (intervaloVelas) clearInterval(intervaloVelas);
 intervaloVelas = setInterval(() => gerarNovaVela(), pares[parAtualIndex].vel);
 atualizarSaldo();
